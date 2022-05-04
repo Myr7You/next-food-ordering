@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Featured from '../components/Featured';
+import ProductList from '../components/ProductList';
+// import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -10,8 +12,8 @@ export default function Home() {
         <meta name="description" content="Best food ordering app in town" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      homepage
-      <Image src="/img/logo.png" alt="logo" width="32" height="32"/>
+      <Featured />
+      <ProductList />
     </div>
   );
 }

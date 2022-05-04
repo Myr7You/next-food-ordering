@@ -1,0 +1,129 @@
+.container{
+  display: flex;
+  padding: 50px;
+  min-height: 600px;
+}
+
+.left{
+  flex: 2;
+}
+
+.table{
+  width: 100%;
+  text-align: left;
+  margin-bottom: 50px;
+}
+.row{
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.done{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inProgress{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: inProgress 1s ease infinite alternate;
+}
+
+.undone{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.3;
+}
+
+.undone .checkIcon, .inProgress .checkIcon{
+  display: none;
+}
+
+@keyframes inProgress {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.right{
+  flex: 1;
+}
+
+.wrapper {
+  width: 90%;
+  max-height: 300px;
+  background-color: #333;
+  padding: 50px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.totalTextTitle {
+  margin-right: 10px;
+}
+
+.button {
+  height: 30px;
+  font-weight: bold;
+  /* background-color: rgb(250, 190, 50); */
+  color: teal;
+  cursor: not-allowed;
+  margin-top: 20px;
+}
+
+@media screen and (max-width:480px) {
+  .container{
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .trTitle{
+    display: none;
+  }
+
+  .tr{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  .id,.name,.addr,.total{
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .id::before{
+    content: "Order Id: ";
+  }
+
+  .name::before{
+    content: "Username: ";
+  }
+  .addr::before{
+    content: "Address: ";
+  }
+  .total::before{
+    content: "Total: ";
+  }
+
+  .row{
+    width: 100%;
+    display: flex;
+  }
+
+  .wrapper{
+    width: 100%;
+  }
+
+}
