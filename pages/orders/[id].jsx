@@ -1,29 +1,31 @@
 import React from 'react'
 import styles from "../../styles/Order.module.css"
 import Image from 'next/image';
-const Order = () => {
-  const status = 0 ;
-  const statusClass = (index) => {
-    if (index - status < 1) return styles.done
+const Order = ({ order }) => {
+  const status = 0;
+  const statusClass = index => {
+    if (index - status < 1) return styles.done;
     if (index - status === 1) return styles.inProgress;
     if (index - status > 1) return styles.undone;
-  }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.left}>
         <table className={styles.table}>
-          <tr className={styles.trTitle}>
-            <th>Order Id</th>
-            <th>Customer</th>
-            <th>Adress</th>
-            <th>Total</th>
-          </tr>
-          <tr className={styles.tr}>
-            <td className={styles.id}>1234351352</td>
-            <td className={styles.name}>Peter Lee</td>
-            <td className={styles.addr}>Elton st. 123-12</td>
-            <td className={styles.total}>$39.80</td>
-          </tr>
+          <tbody>
+            <tr className={styles.trTitle}>
+              <th>Order Id</th>
+              <th>Customer</th>
+              <th>Adress</th>
+              <th>Total</th>
+            </tr>
+            <tr className={styles.tr}>
+              <td className={styles.id}>{order._id}</td>
+              <td className={styles.name}>{order.customer}</td>
+              <td className={styles.addr}>{order.address}</td>
+              <td className={styles.total}>{order.total}</td>
+            </tr>
+          </tbody>
         </table>
         <div className={styles.row}>
           <div className={statusClass(0)}>
@@ -63,19 +65,32 @@ const Order = () => {
         <div className={styles.wrapper}>
           <h2 className={styles.title}>CART TOTAL</h2>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Subtotal:</b>$79.80
+            <b className={styles.totalTextTitle}>Subtotal:</b>${order.total}
           </div>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Discount:</b>$40.00
+            <b className={styles.totalTextTitle}>Discount:</b>$0.00
           </div>
           <div className={styles.totalText}>
-            <b className={styles.totalTextTitle}>Total:</b>$39.80
+            <b className={styles.totalTextTitle}>Total:</b>${order.total}
           </div>
-          <button className={styles.button}>Pay</button>
+          <button className={styles.button}>
+            {order.method === 1 ? 'PAID' : 'Pay on Delivery'}
+          </button>
         </div>
       </div>
     </div>
   );
-}
+};
+export const getServerSideProps = async ({ params }) => {
+  // Fetch data from external API
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST}/api/orders/${params.id}`
+  );
+  const data = await res.json();
+  // Pass data to the page via props
+  return {
+    props: { order: data }
+  };
+};
 
 export default Order;
