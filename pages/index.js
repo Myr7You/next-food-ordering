@@ -38,6 +38,7 @@ export const getServerSideProps = async (ctx) => {
   // Fetch data from external API
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/products`);
   const data = await res.json();
+  console.log(data);
 
   // Pass data to the page via props
   return { props: { productList: data, admin:admin} };
