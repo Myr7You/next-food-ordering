@@ -110,7 +110,7 @@ export default Product;
 export const getServerSideProps = async ({ params }) => {
   // Fetch data from external API
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST}/api/products/${params.id}`
+    `https://next-food-ordering-phi.vercel.app/api/products/${params.id}`
   );
   const data = await res.json();
 
