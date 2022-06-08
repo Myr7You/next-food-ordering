@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '../styles/ProductList.module.css'
 import FoodCard from './FoodCard';
 const ProductList = ({ products }) => {
+  console.log(products)
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>THE Best RESTAURANT IN TOWN</h1>
@@ -16,7 +17,7 @@ const ProductList = ({ products }) => {
         zzril delenit augue duis dolore te feugait nulla facilisi.
       </p>
       <div className={styles.wrapper}>
-        {products.map(item => (
+        {products && products.map(item => (
           <FoodCard key={item._id} product={item} />
         ))}
       </div>
