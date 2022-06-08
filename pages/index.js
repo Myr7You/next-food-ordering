@@ -12,6 +12,7 @@ import AddButton from '../components/AddButton';
 export default function Home({ productList, admin }) {
   const [close, setClose] = useState(true);
   console.log(productList);
+  // console.log(process.env.NEXT_PUBLIC_HOST);
   return (
     <div className={styles.container}>
       <Head>
@@ -37,7 +38,7 @@ export const getServerSideProps = async (ctx) => {
     admin = true
   }
   // Fetch data from external API
-  const res = await fetch(`${process.env.VERCEL_URL}/api/products`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/products`);
   const data = await res.json();
 
   // Pass data to the page via props
