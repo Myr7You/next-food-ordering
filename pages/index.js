@@ -38,8 +38,9 @@ export const getServerSideProps = async (ctx) => {
   }
   // Fetch data from external API
   const res = await fetch(
-    `https://next-food-ordering-phi.vercel.app/api/products`
-  );
+    `https://next-food-ordering-phi.vercel.app/api/products`,{
+      method:"GET"
+    });
   const data = await res.json();
 
   // Pass data to the page via props
